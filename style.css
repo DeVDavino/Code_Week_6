@@ -1,0 +1,162 @@
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --background-color: rgba(17,29,94,1); 
+    --grey-color: #eeeeee;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 2.4rem;
+    font-family: sans-serif;
+    background-color: var(--background-color);
+}
+
+section{
+    min-height: 100vh;
+    border-bottom: 0.5rem solid var(--grey-color);
+    background-color: var(--background-color);
+}
+
+h2{
+    font-size: 280%;
+    font-weight: 400;
+    color: var(--grey-color);
+    transition: 0.5s all;
+}
+
+.section--1{
+    background-image: url("./img/catImage_One.jpg");
+    background-size: cover; /*Rezies image to fit the container*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: right; /*The right side of the picture =! allowed to get cropped out*/
+}
+
+.section--1 > h1{
+    display: block;
+    font-size: 300%; /*3x bigger than the body font-size*/
+    font-weight: 400;
+    color: var(--grey-color);
+    background-color: var(--background-color);
+    padding: 4rem; /*"content naar de randen toe en margin is van twee elementen van de randen naar elkaar, soms interchangable maar vaak niet"*/
+    animation-name: appear;
+    animation-duration: .5s;
+    animation-timing-function: linear;
+    transform-origin: left; /*Scales from the left, starts top left*/
+    animation-delay: 0.8s;
+    animation-fill-mode: backwards;
+}
+
+.section--flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.section--grid{
+    display: grid;
+    grid-template-columns: repeat(12,minmax(0,1fr)); /*12 columns with 1fr as width*/
+    grid-template-rows: repeat(6, minmax(0,1fr));
+}
+
+.section--grid > figure{
+    position: relative;
+}
+
+.section--grid > figure::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute; 
+    top: 0%;
+    left: 0;
+    background-color: var(--background-color);
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.section--grid > figure:hover::after{
+    opacity: 0;
+}
+
+.section--grid > figure > img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+   
+}
+
+.section--grid > figure:nth-of-type(1){
+    grid-column: 1 / span 4;
+    grid-row: span 6;
+}
+
+.section--grid > figure:nth-of-type(2){
+    grid-column: 5 / span 4;
+    grid-row: 1 / span 3;
+}
+
+.section--grid > figure:nth-of-type(3){
+    grid-column: 5 / span 4;
+    grid-row: 4 / span 3;
+}
+
+.section--grid > figure:nth-of-type(4){
+    grid-column: 9 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.section--grid > figure:nth-of-type(5){
+    grid-column: 10 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.section--grid > figure:nth-of-type(6){
+    grid-column: 11 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.section--grid > figure:nth-of-type(7){
+    grid-column: 12 / span 4;
+    grid-row: 1 / span 1;
+}
+
+.section--grid > figure:nth-of-type(8){
+    grid-column: 9 / -1;
+    grid-row: 2 / span 5;
+}
+.fromLeft{
+    animation: fromLeft;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+    from{
+        transform: scale(0)
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+@keyframes fromLeft{
+    from{
+        opacity: 0;
+        transform: translateX(-20rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
